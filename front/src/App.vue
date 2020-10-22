@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <Timer msg="Welcome to Your Vue.js App"/>
+    <Timer/>
+    <Timer/>
+    <Timer/>
   </div>
 </template>
 
