@@ -1,21 +1,23 @@
 <template>
   <div id="app">
-    <Timer/>
-    <Timer/>
-    <Timer/>
+    <TimerGroup/>
+    <TimerGroup/>
   </div>
 </template>
 
 <script>
-import Timer from './components/Timer.vue'
+import TimerGroup from './components/TimerGroup.vue'
 
 export default {
   name: 'App',
   components: {
-    Timer
+    TimerGroup
   }
 }
 </script>
 
 <style>
+.clear {
+  clear: both;
+}
 </style>

@@ -1,6 +1,7 @@
 <template>
-  <div class="hello">
-    <p>{{ formatedTime }}</p>
+  <div class="group">
+    <h2>{{ title }}</h2>
+    <p class="time-font">{{ formatedTime }}</p>
     <button v-on:click="start()">start</button>
     <button v-on:click="stop()">stop</button>
   </div>
@@ -8,9 +9,12 @@
 
 <script>
 export default {
+  props: {
+    title: String,
+    time: Number,
+  },
   data: function() {
     return {
-      time: 3601,
       id: null,
     }
   },
@@ -56,5 +60,8 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.time-font {
+  font-size: 32px;
+}
+</style>
