@@ -1,6 +1,6 @@
 <template>
   <div class="group">
-    <input type="text" v-model="title">
+    <input type="text" v-on:keyup.enter="registerInfo()" v-model="timer_info">
     <h3>{{ title }}</h3>
     <p class="time-font">{{ formatedTime }}</p>
     <button v-on:click="start()">start</button>
@@ -13,8 +13,9 @@ export default {
   data: function() {
     return {
       id: null,
-      title: 'sample1',
-      time: 300,
+      timer_info: '',
+      title: "NoTitle",
+      time: 0,
     }
   },
   computed: {
@@ -41,7 +42,7 @@ export default {
           return v;
         }
       }
-    }
+    },
   },
   methods: {
     start() {
@@ -54,6 +55,13 @@ export default {
     stop() {
       clearInterval(this.id);
       this.id = null;
+    },
+    registerInfo() {
+      const info_arr = this.timer_info.split(' ');
+      this.title = info_arr[0];
+      if (info_arr.length > 1) {
+        this.time = Number(info_arr[info_arr.length - 1]);
+      }
     }
   }
 }
