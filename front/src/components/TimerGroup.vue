@@ -1,7 +1,10 @@
 <template>
   <div class="timer">
     <ul>
-      <li v-for="timer in timers" :key="timer.title"><Timer :title="timer.title" :time="timer.time" /></li>
+      <li v-for="i of num_timers" :key="i"><Timer /></li>
+      <li>
+        <button v-on:click="add_timer()">+</button>
+      </li>
       <div class="clear"></div>
     </ul>
   </div>
@@ -16,10 +19,12 @@ export default {
   },
   data: () => {
     return {
-      timers: [
-        {title: 'sample1', time: 300},
-        {title: 'sample2', time: 400}
-      ]
+      num_timers: 1,
+    }
+  },
+  methods: {
+    add_timer() {
+      this.num_timers += 1;
     }
   }
 }

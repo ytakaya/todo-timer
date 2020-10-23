@@ -1,6 +1,7 @@
 <template>
   <div class="group">
-    <h2>{{ title }}</h2>
+    <input type="text" v-model="title">
+    <h3>{{ title }}</h3>
     <p class="time-font">{{ formatedTime }}</p>
     <button v-on:click="start()">start</button>
     <button v-on:click="stop()">stop</button>
@@ -9,13 +10,11 @@
 
 <script>
 export default {
-  props: {
-    title: String,
-    time: Number,
-  },
   data: function() {
     return {
       id: null,
+      title: 'sample1',
+      time: 300,
     }
   },
   computed: {
