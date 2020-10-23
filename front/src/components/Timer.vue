@@ -62,5 +62,6 @@ export default {
 <style scoped>
 .time-font {
   font-size: 32px;
+  margin: 10px 0;
 }
 </style>
