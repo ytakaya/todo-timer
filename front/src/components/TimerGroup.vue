@@ -1,6 +1,6 @@
 <template>
   <div class="timer">
-    <h2>Test</h2>
+    <h2>{{ title_group }} <input v-model="title_group" type="text"></h2>
     <ul>
       <li v-for="i of num_timers" :key="i"><Timer /></li>
       <li>
@@ -21,6 +21,7 @@ export default {
   data: () => {
     return {
       num_timers: 1,
+      title_group: "",
     }
   },
   methods: {
