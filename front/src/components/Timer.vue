@@ -16,6 +16,7 @@ export default {
       timer_info: '',
       title: "NoTitle",
       time: 0,
+      unit: 1,
     }
   },
   computed: {
@@ -47,8 +48,8 @@ export default {
   methods: {
     start() {
       if (!this.id) {
-        this.id = setInterval(() => {
-          this.time -= 1
+        this.id = setInterval(() => {    
+         this.time += this.unit
         }, 1000)
       }
     },
@@ -60,7 +61,13 @@ export default {
       const info_arr = this.timer_info.split(' ');
       this.title = info_arr[0];
       if (info_arr.length > 1) {
-        this.time = Number(info_arr[info_arr.length - 1]);
+        if (info_arr[info_arr.length - 1] === '0') {
+          this.unit = 1; 
+        }
+        else {
+          this.time = Number(info_arr[info_arr.length - 1]);
+          this.unit = -1;
+        }
       }
     }
   }
