@@ -1,7 +1,7 @@
 <template>
   <div class="group">
     <input type="text" v-on:keyup.enter="registerInfo()" v-model="timer_info">
-    <h3>{{ title }}</h3>
+    <h3>{{ title }} <button v-on:click="removeTimer()">x</button> </h3>
     <p class="time-font">{{ formatedTime }}</p>
     <button v-on:click="start()">start</button>
     <button v-on:click="stop()">stop</button>
@@ -10,6 +10,9 @@
 
 <script>
 export default {
+  props: {
+    timer_id: Number
+  },
   data: function() {
     return {
       id: null,
@@ -69,6 +72,9 @@ export default {
           this.unit = -1;
         }
       }
+    },
+    removeTimer() {
+      this.$emit("removeTimer", this.timer_id)
     }
   }
 }

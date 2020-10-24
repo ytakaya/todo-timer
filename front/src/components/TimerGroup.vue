@@ -2,9 +2,13 @@
   <div class="timer">
     <h2>{{ title_group }} <input v-model="title_group" type="text"></h2>
     <ul>
-      <li v-for="i of num_timers" :key="i"><Timer /></li>
+      <li v-for="timer of timers" :key="timer.id">
+        <Timer :timer_id="timer.id"
+               @removeTimer="removeTimer" 
+        />
+      </li>
       <li>
-        <button v-on:click="add_timer()">+</button>
+        <button v-on:click="addTimer()">+</button>
       </li>
       <div class="clear"></div>
     </ul>
@@ -20,13 +24,27 @@ export default {
   },
   data: () => {
     return {
-      num_timers: 1,
+      timers: [
+        {id: 0}
+      ],
+      next_id: 1,
       title_group: "",
     }
   },
   methods: {
-    add_timer() {
-      this.num_timers += 1;
+    addTimer() {
+      this.timers.push({
+        id: this.next_id,
+      })
+      this.next_id += 1;
+    },
+    removeTimer(timer_id) {
+      for (let i=0; i<this.timers.length; i++) {
+        if (this.timers[i].id === timer_id) {
+          this.timers.splice(i, 1);
+          return
+        }
+      }
     }
   }
 }
