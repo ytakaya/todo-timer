@@ -1,5 +1,5 @@
 <template>
-  <div class="group">
+  <div class="timer">
     <input type="text" v-on:keyup.enter="registerInfo()" v-model="timer_info">
     <h3>{{ title }} <button v-on:click="removeTimer()">x</button> </h3>
     <p class="time-font">{{ formatedTime }}</p>

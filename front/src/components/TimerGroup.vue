@@ -1,6 +1,11 @@
 <template>
-  <div class="timer">
-    <h2>{{ title_group }} <input v-model="title_group" type="text"></h2>
+  <div class="group">
+    <div v-if="title_input">
+      <input v-model="title_group" @keyup.enter="title_input=false" @blur="title_input=false" type="text">
+    </div>
+    <div v-else>
+      <h2 @click="title_input=true">{{ title_group }}</h2>
+    </div>
     <ul>
       <li v-for="timer of timers" :key="timer.id">
         <Timer :timer_id="timer.id"
@@ -28,7 +33,8 @@ export default {
         {id: 0}
       ],
       next_id: 1,
-      title_group: "",
+      title_group: "GroupName",
+      title_input: false,
     }
   },
   methods: {
@@ -55,5 +61,9 @@ li {
   list-style: none;
   float: left;
   margin-right: 10px;
+}
+.group {
+  border: solid 1px gray;
+  padding: 10px;
 }
 </style>
