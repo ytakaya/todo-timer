@@ -1,7 +1,7 @@
 <template>
   <div class="timer">
     <div v-if="title_input">
-      <input ref="timerInput" v-model="timer_info" @blur="title_input=false" @keyup.enter="this.title_input=false; this.registerInfo()" type="text">
+      <input ref="timerInput" v-model="timer_info" @blur="title_input=false" @keyup.enter="title_input=false; registerInfo()" type="text">
     </div>
     <div v-else>
       <h3 @click="timerInput()">{{ title }} <button v-on:click="removeTimer()">x</button></h3>
