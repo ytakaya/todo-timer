@@ -29,11 +29,12 @@ jobs:
 
       - name: npm install and build
         run: |
+          cd ./front
           npm install
           npm run build
 
       - name: Deploy to netlify
-        run: npx netlify-cli deploy --dir=./dist
+        run: npx netlify-cli deploy --dir=./front/dist
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
