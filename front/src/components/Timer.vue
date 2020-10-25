@@ -1,7 +1,12 @@
 <template>
   <div class="timer">
-    <input type="text" v-on:keyup.enter="registerInfo()" v-model="timer_info">
-    <h3>{{ title }} <button v-on:click="removeTimer()">x</button> </h3>
+    <div v-if="title_input">
+      <input ref="timerInput" v-model="timer_info" @blur="title_input=false" @keyup.enter="this.title_input=false; this.registerInfo()" type="text">
+    </div>
+    <div v-else>
+      <h3 @click="timerInput()">{{ title }} <button v-on:click="removeTimer()">x</button></h3>
+    </div>
+
     <p class="time-font">{{ formatedTime }}</p>
     <button v-on:click="start()">start</button>
     <button v-on:click="stop()">stop</button>
@@ -16,7 +21,8 @@ export default {
   data: function() {
     return {
       id: null,
-      timer_info: '',
+      timer_info: 'NoTitle 0',
+      title_input: false,
       title: "NoTitle",
       time: 0,
       unit: 1,
@@ -60,6 +66,10 @@ export default {
       clearInterval(this.id);
       this.id = null;
     },
+    timerInput() {
+      this.title_input=true;
+      this.$nextTick(() => {this.$refs.timerInput.focus();})
+    },
     registerInfo() {
       const info_arr = this.timer_info.split(' ');
       this.title = info_arr[0];
@@ -84,5 +94,12 @@ export default {
 .time-font {
   font-size: 32px;
   margin: 10px 0;
+}
+h3 {
+  margin-top: 0;
+}
+.timer {
+  border: solid 1px gray;
+  padding: 20px;
 }
 </style>

@@ -1,10 +1,10 @@
 <template>
   <div class="group">
     <div v-if="title_input">
-      <input v-model="title_group" @keyup.enter="title_input=false" @blur="title_input=false" type="text">
+      <input ref="groupInput" v-model="title_group" @keyup.enter="title_input=false" @blur="title_input=false" type="text">
     </div>
     <div v-else>
-      <h2 @click="title_input=true">{{ title_group }}</h2>
+      <h2 @click="groupInput()">{{ title_group }}</h2>
     </div>
     <ul>
       <li v-for="timer of timers" :key="timer.id">
@@ -38,6 +38,10 @@ export default {
     }
   },
   methods: {
+    groupInput() {
+      this.title_input=true;
+      this.$nextTick(() => {this.$refs.groupInput.focus();})
+    },
     addTimer() {
       this.timers.push({
         id: this.next_id,
